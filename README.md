@@ -1,119 +1,119 @@
 # AluGames
 
-## Descrição
-AluGames é um projeto de estudo em Kotlin com o objetivo de explorar conceitos como:
-- Consumo de APIs REST usando a biblioteca `HttpClient`.
-- Manipulação de JSON com a biblioteca `Gson`.
-- Uso de estruturas de dados e boas práticas de orientação a objetos.
-- Implementação de lógicas para ordenação, filtragem e remoção de itens.
-- Validação de dados e geração de identificadores exclusivos para os "Gamers".
-
-O projeto simula um sistema de cadastro de jogadores (gamers), com a possibilidade de buscar e gerenciar informações de jogos consumidas de uma API externa.
-
----
+Um sistema de gerenciamento de aluguel de jogos com funcionalidades como cadastro de gamers, jogos, planos de assinatura e recomendação de jogos. Desenvolvido em Kotlin, utilizando Hibernate e MySQL, o projeto explora boas práticas de design orientado a objetos, persistência de dados e consumo de APIs externas.
 
 ## Funcionalidades
 
-- Cadastro de gamers com validação de nome e e-mail.
-- Geração automática de IDs exclusivos para os gamers.
-- Busca de informações de jogos por meio da API [CheapShark](https://www.cheapshark.com/api).
-- Ordenação e filtragem de jogos buscados.
-- Possibilidade de adicionar descrições personalizadas aos jogos.
-- Remoção de jogos da lista de buscados.
+### Gamers:
+- Cadastro de gamers com nome, e-mail, data de nascimento e usuário.
+- Geração automática de ID interno exclusivo.
+- Possibilidade de recomendação de jogos baseados em notas.
 
----
+### Jogos:
+- Cadastro e busca de jogos com título, capa, descrição e preço.
+- Consumo de APIs externas para buscar dados de jogos e criar objetos dinâmicos.
+- Recomendação de jogos baseadas em avaliações de gamers.
+
+### Aluguéis:
+- Registro de aluguéis de jogos vinculados a gamers.
+- Cálculo automático do valor do aluguel baseado no plano do gamer.
+- Gerenciamento de período de aluguéis.
+
+### Planos:
+- Sistema de planos de assinatura (ex.: Bronze, Prata, Ouro, Platina, Diamante).
+- Gerenciamento de mensalidades e descontos baseados em reputação.
+- Registro de planos avulsos sem mensalidade fixa.
 
 ## Tecnologias Utilizadas
 
 - **Linguagem:** Kotlin
-- **Gerenciador de Dependências:** Maven
-- **APIs Utilizadas:** [CheapShark](https://www.cheapshark.com/api)
-- **Bibliotecas:**
-  - `Gson`: Manipulação de JSON.
-  - `HttpClient`: Consumo de APIs REST.
-  - `JUnit 5`: Testes unitários.
-
----
+- **Banco de Dados:** MySQL
+- **ORM:** Hibernate
+- **API REST:** CheapShark API
+- **Ferramentas:**
+  - Maven
+  - Gson
+  - JPA (Java Persistence API)
+- **Testes:** JUnit
 
 ## Estrutura do Projeto
 
-- **`Gamer`**: Classe que representa o jogador, com métodos para validação de e-mail, criação de IDs e gerenciamento de jogos.
-- **`Jogo`**: Classe que representa os jogos buscados na API, incluindo título, capa e descrição.
-- **`ConsumoApi`**: Classe responsável pelo consumo da API CheapShark.
-- **`Main`**: Contém a lógica principal do programa, incluindo interação com o usuário para cadastro de gamers e busca de jogos.
-
----
-
-## Como Executar
-
-### Requisitos
-- Java 11+
-- Maven instalado
-- Conexão com a internet para consumir a API
-
-### Passos
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/LuanadeSouza/Alugames.git
-   cd AluGames
-   ```
-
-2. Compile o projeto:
-   ```bash
-   mvn compile
-   ```
-
-3. Execute a aplicação:
-   ```bash
-   mvn exec:java
-   ```
-
----
-
-## Exemplo de Execução
-
-1. Cadastro de Gamer:
-   - Digite nome e e-mail.
-   - Escolha se deseja adicionar mais informações (data de nascimento e usuário).
-
-2. Busca de Jogos:
-   - Informe o ID de um jogo.
-   - Escolha adicionar uma descrição personalizada ou usar o título do jogo como descrição.
-
-3. Gerenciamento de Jogos:
-   - Ordene os jogos buscados por título.
-   - Filtre jogos por palavras-chave.
-   - Remova jogos da lista conforme necessário.
-
----
-
-## Estrutura de Diretórios
-```
-AluGames/
-├── src/
-│   ├── main/
-│   │   ├── kotlin/
-│   │   │   ├── Gamer.kt
-│   │   │   ├── Jogo.kt
-│   │   │   ├── ConsumoApi.kt
-│   │   │   └── Main.kt
-│   ├── test/
-│   │   ├── kotlin/
-│   │   │   └── TestesUnitarios.kt
+```bash
+src
+├── dados
+│   ├── AluguelDAO.kt
+│   ├── GamerDAO.kt
+│   ├── JogoDAO.kt
+│   ├── PlanoDAO.kt
+│   ├── Banco.kt
+├── modelo
+│   ├── Aluguel.kt
+│   ├── Gamer.kt
+│   ├── Jogo.kt
+│   ├── Plano.kt
+├── principal
+│   ├── Main.kt
+│   ├── OperacoesGamer.kt
+│   ├── OperacoesJogo.kt
+├── servicos
+│   ├── ConsumoApi.kt
+├── utilitario
+│   ├── Conversores.kt
+├── resources
+│   ├── META-INF/persistence.xml
 ├── pom.xml
 ```
 
----
+## Como Executar o Projeto
 
-## Inspiração
-Este projeto foi inspirado pela necessidade de praticar conceitos de consumo de APIs, manipulação de dados e boas práticas de programação orientada a objetos. Também foi projetado para explorar a manipulação de listas e o uso de lógicas condicionais em Kotlin.
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/usuario/AluGames.git
+   ```
 
----
+2. Configure o banco de dados:
+   - Crie um banco de dados MySQL chamado `alugames`.
+   - Atualize as credenciais no arquivo `persistence.xml`.
 
-## Contribuições
-Contribuições são bem-vindas! Abra um pull request ou relate problemas na aba de issues.
+3. Compile e execute o projeto:
+   ```bash
+   mvn clean install
+   mvn exec:java
+   ```
 
----
+4. Execute as operações principais no console, como cadastro de gamers, busca de jogos e registro de aluguéis.
+
+## Exemplo de Uso
+
+### Cadastro de Gamer:
+```plaintext
+Digite seu nome: John Doe
+Digite seu e-mail: john.doe@example.com
+Deseja completar seu cadastro com usuário e data de nascimento? (S/N): S
+Digite sua data de nascimento (DD/MM/AAAA): 15/06/1990
+Digite seu nome de usuário: johndoe90
+```
+
+### Busca de Jogo:
+```plaintext
+Digite um código de jogo para buscar: 12345
+Jogo encontrado:
+Título: Resident Evil Village
+Capa: [link para capa]
+Deseja inserir uma descrição personalizada? (S/N): N
+```
+
+### Registro de Aluguel:
+```plaintext
+Digite o código do jogo para alugar: 12345
+Digite o período de aluguél (em dias): 7
+Aluguel registrado com sucesso!
+```
 
 ## Licença
-Este projeto está licenciado sob a [MIT License](LICENSE).
+
+Este projeto é licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+**Desenvolvido como parte dos estudos no programa da Alura.**
