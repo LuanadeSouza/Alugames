@@ -99,7 +99,6 @@ Digite seu nome de usuário: johndoe90
 Digite um código de jogo para buscar: 12345
 Jogo encontrado:
 Título: Resident Evil Village
-Capa: [link para capa]
 Deseja inserir uma descrição personalizada? (S/N): N
 ```
 
