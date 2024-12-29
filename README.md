@@ -68,7 +68,7 @@ src
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/usuario/AluGames.git
+   git clone  https://github.com/LuanadeSouza/Alugames.git
    ```
 
 2. Configure o banco de dados:
