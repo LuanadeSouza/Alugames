@@ -54,7 +54,7 @@ O projeto simula um sistema de cadastro de jogadores (gamers), com a possibilida
 ### Passos
 1. Clone este repositório:
    ```bash
-   git clone <URL-DO-REPOSITORIO>
+   git clone[ <URL-DO-REPOSITORIO>](https://github.com/LuanadeSouza/Alugames.git)
    cd AluGames
    ```
 
